@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagrama EAP Expandível</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #2c3e50;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    overflow-x: auto;
+}
+h1 {
+    color: #ecf0f1;
+    margin-bottom: 40px;
+}
+
+/* Nó raiz */
+.root {
+    background: #1abc9c;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+/* Linha vertical do root até os blocos principais */
+.root::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 2px;
+    height: 40px;
+    background: #fff;
+}
+
+/* Container dos blocos principais */
+.top-level {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 60px;
+    position: relative;
+}
+
+/* Linha horizontal conectando todos os blocos principais */
+.top-level::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #fff;
+}
+
+/* Nó genérico */
+.node {
+    background: #3498db;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+    position: relative;
+    min-width: 160px;
+}
+
+/* Linha do pai para cada bloco principal */
+.node::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    width: 2px;
+    height: 20px;
+    background: #fff;
+}
+
+/* Subníveis abaixo */
+.children {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    position: relative;
+}
+
+/* Linha vertical do pai para os filhos */
+.children::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    width: 2px;
+    height: 20px;
+    background: #fff;
+}
+
+/* Sub-blocos */
+.subnode {
+    background: #ecf0f1;
+    color: #2c3e50;
+    margin: 5px 0;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    position: relative;
+    min-width: 140px;
+}
+
+/* Linha de cada subnó com o pai */
+.subnode::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 2px;
+    height: 10px;
+    background: #fff;
+}
+
+/* Expand/Collapse */
+.collapsed > .children {
+    display: none;
+}
+.toggle::after {
+    content: " ▶";
+    font-size: 12px;
+}
+.toggle:not(.collapsed)::after {
+    content: " ▼";
+}
+</style>
+</head>
+<body>
+
+<!-- Raiz -->
+<div class="root">Sistema de Análise de Movimento</div>
+
+<!-- Blocos principais -->
+<div class="top-level">
+    <div class="node toggle collapsed">1. Iniciação e Planejamento
+        <div class="children">
+            <div class="subnode toggle collapsed">1.1 Definição do Escopo Detalhado
+                <div class="children">
+                    <div class="subnode toggle collapsed">1.1.1 Levantamento de Requisitos
+                        <div class="children">
+                            <div class="subnode">1.1.1.1 Funcionais e Não Funcionais</div>
+                            <div class="subnode">1.1.1.2 Ferramentas e Tecnologias</div>
+                            <div class="subnode">1.1.1.3 Modelagem de Dados e Fluxos</div>
+                        </div>
+                    </div>
+                    <div class="subnode toggle collapsed">1.1.2 Plano de Projeto
+                        <div class="children">
+                            <div class="subnode">1.1.2.1 Cronograma Detalhado</div>
+                            <div class="subnode">1.1.2.2 Orçamento Detalhado</div>
+                            <div class="subnode">1.1.2.3 Plano de Recursos</div>
+                            <div class="subnode">1.1.2.4 Plano de Riscos</div>
+                            <div class="subnode">1.1.2.5 Plano de Qualidade</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="node toggle collapsed">2. Desenvolvimento do Protótipo
+        <div class="children">
+            <div class="subnode toggle collapsed">2.1 Módulo Entrada de Dados
+                <div class="children">
+                    <div class="subnode">2.1.1 Upload de Vídeos/Imagens</div>
+                    <div class="subnode">2.1.2 Entrada de Parâmetros</div>
+                </div>
+            </div>
+            <div class="subnode toggle collapsed">2.2 Módulo Análise de Movimento
+                <div class="children">
+                    <div class="subnode">2.2.1 Algoritmos de Rastreamento</div>
+                    <div class="subnode">2.2.2 Cálculo Diferencial Automático</div>
+                </div>
+            </div>
+            <div class="subnode toggle collapsed">2.3 Módulo Visualização
+                <div class="children">
+                    <div class="subnode">2.3.1 Geração de Gráficos</div>
+                    <div class="subnode">2.3.2 Sobreposição Vetorial</div>
+                    <div class="subnode">2.3.3 Interface do Usuário (UI/UX)</div>
+                </div>
+            </div>
+            <div class="subnode toggle collapsed">2.4 Módulo Relatórios
+                <div class="children">
+                    <div class="subnode">2.4.1 Exportação CSV</div>
+                    <div class="subnode">2.4.2 Exportação PDF</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="node toggle collapsed">3. Testes e Validação
+        <div class="children">
+            <div class="subnode toggle collapsed">3.1 Planejamento de Testes
+                <div class="children">
+                    <div class="subnode">3.1.1 Casos de Teste</div>
+                    <div class="subnode">3.1.2 Preparação de Dados</div>
+                </div>
+            </div>
+            <div class="subnode toggle collapsed">3.2 Execução de Testes
+                <div class="children">
+                    <div class="subnode">3.2.1 Funcionalidade</div>
+                    <div class="subnode">3.2.2 Performance</div>
+                    <div class="subnode">3.2.3 Usabilidade</div>
+                    <div class="subnode">3.2.4 Compatibilidade</div>
+                </div>
+            </div>
+            <div class="subnode toggle collapsed">3.3 Análise de Erros
+                <div class="children">
+                    <div class="subnode">3.3.1 Correção de Bugs</div>
+                    <div class="subnode">3.3.2 Otimização de Algoritmos</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="node toggle collapsed">4. Documentação e Encerramento
+        <div class="children">
+            <div class="subnode toggle collapsed">4.1 Documentação
+                <div class="children">
+                    <div class="subnode">4.1.1 Manual do Usuário</div>
+                    <div class="subnode">4.1.2 Documentação do Código</div>
+                    <div class="subnode">4.1.3 Artigo Científico</div>
+                </div>
+            </div>
+            <div class="subnode toggle collapsed">4.2 Entrega do Projeto
+                <div class="children">
+                    <div class="subnode">4.2.1 Repositório de Código</div>
+                    <div class="subnode">4.2.2 Versão Final</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.querySelectorAll('.toggle').forEach(node => {
+    node.addEventListener('click', function(e){
+        e.stopPropagation();
+        this.classList.toggle('collapsed');
+    });
+});
+</script>
+
+</body>
+</html>
